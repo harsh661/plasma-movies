@@ -4,7 +4,7 @@ export default function Card(props) {
   const [movie, setMovie] = React.useState({});
  
   React.useEffect(() => {
-    fetch(`http://www.omdbapi.com/?t=${props.name}&apikey=979593d9`)
+    fetch(`https://www.omdbapi.com/?t=${props.name}&apikey=979593d9`)
       .then((res) => res.json())
       .then((data) => setMovie(data));
   }, [props.willShow]);
