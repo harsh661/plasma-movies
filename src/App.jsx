@@ -14,7 +14,9 @@ export default function App() {
   function handleSubmit(event) {
     event.preventDefault()
     setNum((prevNum) => prevNum + 1);
-    seterrorMsg("Oops, Movie not found!")
+    setTimeout(() => {
+      seterrorMsg("Oops, Movie not found!")
+    }, 2000)
   }
 
   function clearAll(event) {
