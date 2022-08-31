@@ -1,4 +1,5 @@
 import React from "react";
+import { FaStar } from "react-icons/fa";
 
 export default function Card(props) {
   const [movie, setMovie] = React.useState({});
@@ -18,11 +19,7 @@ export default function Card(props) {
           </div>
           <div className="about">
             <span className="rating">
-              <img
-                src="./src/assets/star.png"
-                alt={movie.Poster}
-                style={{ width: "30px" }}
-              />
+              <FaStar style={{color:'#f7b900'}}/>
               <span>{movie.imdbRating}</span>
             </span>
             <span style={{padding: '10px 0'}}>Language: {movie.Language}</span>
