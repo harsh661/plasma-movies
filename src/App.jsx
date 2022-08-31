@@ -1,10 +1,11 @@
 import React from 'react'
 import Card from './Card'
+import {VscChromeClose} from 'react-icons/vsc'
 
 export default function App() {
   const[search, setSearch] = React.useState('')
   const [num, setNum] = React.useState(1);
-
+  const [errorMsg, seterrorMsg] = React.useState('')
 
   function handleChange(event){
     setSearch(event.target.value)
@@ -13,21 +14,29 @@ export default function App() {
   function handleSubmit(event) {
     event.preventDefault()
     setNum((prevNum) => prevNum + 1);
+    seterrorMsg("Oops, Movie not found!")
   }
 
+  function clearAll(event) {
+    setSearch("")
+    setNum(prevNum => prevNum - 1)
+    seterrorMsg("")
+  }
   return (
     <>
       <nav className='navbar'>
         <form onSubmit={handleSubmit}>
-          <input 
-          type="text"
-          placeholder='Search Movies'
-          name='search' 
-          value={search}
-          onChange={handleChange}
-          className='input'
-          />
-          
+          <div className='form--container'>
+            <input 
+            type="text"
+            placeholder='Search Movies'
+            name='search' 
+            value={search}
+            onChange={handleChange}
+            className='input'
+            />
+            <i onClick={clearAll}><VscChromeClose id='close'/></i>
+          </div>
           <button 
           className='search--btn'>Search
           </button>
@@ -35,7 +44,7 @@ export default function App() {
         </form>
       </nav>
       <div className="container">
-        <Card name={search} handleSubmit={handleSubmit} willShow={num}/>
+        <Card name={search} willShow={num} msg={errorMsg}/>
       </div>
     </>
   )

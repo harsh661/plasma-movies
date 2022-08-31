@@ -12,7 +12,7 @@ export default function Card(props) {
 
   return (
     <>
-      {movie.Title !== undefined && (
+      {movie.Error !== "Movie not found" && movie.Title !== undefined ?
         <div className="card">
           <div className="poster">
             <img src={movie.Poster} alt={movie.Title} />
@@ -30,8 +30,9 @@ export default function Card(props) {
                 Released on: <b>{movie.Released}</b>
             </span>
           </div>
-        </div>
-      )}
+        </div>: <h1 className="error-msg">{props.msg}</h1>
+      }
+      
     </>
   );
 }
