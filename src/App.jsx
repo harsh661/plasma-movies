@@ -1,11 +1,11 @@
 import React from 'react'
 import Card from './Card'
-import {VscChromeClose} from 'react-icons/vsc'
+import {VscChromeClose} from 'react-icons/vsc'   //importing icon
 
 export default function App() {
-  const[search, setSearch] = React.useState('')
-  const [num, setNum] = React.useState(1);
-  const [errorMsg, seterrorMsg] = React.useState('')
+  const[search, setSearch] = React.useState('')  //search text
+  const [trigger, settrigger] = React.useState(false);       //trigger event
+  const [errorMsg, seterrorMsg] = React.useState('')    //error message
 
   function handleChange(event){
     setSearch(event.target.value)
@@ -13,15 +13,13 @@ export default function App() {
 
   function handleSubmit(event) {
     event.preventDefault()
-    setNum((prevNum) => prevNum + 1);
-    setTimeout(() => {
-      seterrorMsg("Oops, Movie not found!")
-    }, 2000)
+    settrigger(prevtrigger => !prevtrigger)
+    seterrorMsg("Oops, Movie not found!")
   }
 
-  function clearAll(event) {
+  function clearAll() {
     setSearch("")
-    setNum(prevNum => prevNum - 1)
+    settrigger(prevtrigger => !prevtrigger)
     seterrorMsg("")
   }
   return (
@@ -46,7 +44,7 @@ export default function App() {
         </form>
       </nav>
       <div className="container">
-        <Card name={search} willShow={num} msg={errorMsg}/>
+        <Card name={search} willShow={trigger} msg={errorMsg}/>
       </div>
     </>
   )
